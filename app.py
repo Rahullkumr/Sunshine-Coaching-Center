@@ -35,25 +35,13 @@ def contact():
 def about():
     return render_template("about.html")
 
-@app.route('/labs', methods=['GET', 'POST'])
-def labs():
-    return render_template("labs.html")
-
-@app.route('/library', methods=['GET', 'POST'])
-def library():
-    return render_template("library.html")
-
-@app.route('/eclasses', methods=['GET', 'POST'])
-def eclasses():
-    return render_template("eclasses.html")
-
 @app.route('/student', methods=['GET', 'POST'])
 def student():
     return render_template("student.html")
 
-@app.route('/teacher', methods=['GET', 'POST'])
-def teacher():
-    return render_template("teacher.html")
+# @app.route('/teacher', methods=['GET', 'POST'])
+# def teacher():
+#     return render_template("teacher.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
