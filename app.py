@@ -7,25 +7,13 @@ def hello_world():
     '''This is the Homepage'''
     return render_template("index.html")
 
-@app.route('/activities', methods=['GET', 'POST'])
-def activities():
-    return render_template("activities.html")
-
-@app.route('/faculty', methods=['GET', 'POST'])
-def faculty():
-    return render_template("faculty.html")
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template("login.html")
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    return render_template("signup.html")
-
-@app.route('/message', methods=['GET', 'POST'])
-def message():
-    return render_template("message.html")
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return render_template("register.html")
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -35,13 +23,9 @@ def contact():
 def about():
     return render_template("about.html")
 
-@app.route('/student', methods=['GET', 'POST'])
-def student():
-    return render_template("student.html")
-
-# @app.route('/teacher', methods=['GET', 'POST'])
-# def teacher():
-#     return render_template("teacher.html")
+@app.route('/courses', methods=['GET', 'POST'])
+def courses():
+    return render_template("courses.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
