@@ -8,5 +8,5 @@ MySQL database, and responsive frontend design.
 - HTML
 - Bootstrap
 - JavaScript
-- Django
+- Flask
 - MySQL
