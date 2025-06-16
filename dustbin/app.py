@@ -10,9 +10,10 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'write_your_own_password_here'
 app.config['MYSQL_DB'] = 'scc'
-app.config['UPLOAD_FOLDER'] = 'C:\\Users\\rv201\\PycharmProjects\\SCC\\static\\profilePic'
+# set this path accordingly
+app.config['UPLOAD_FOLDER'] = 'C:\\Users\\rahul\\Desktop\\Sunshine-Coaching-Center\\static\\profilepic'
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 app.config['SECRET_KEY'] = 'secret_key'
 
@@ -61,7 +62,6 @@ def register():
     msg = ''
 
     if request.method == 'POST' and 'Name' in request.form and 'Email' in request.form:
-        Rollno = 'NULL'
         Name = request.form['Name']
         Age = request.form['Age']
         Gender = request.form['Gender']
@@ -71,7 +71,8 @@ def register():
         Password = request.form['Password']
         enc_pwd = sha256_crypt.encrypt(Password)
         file = request.files['Photo']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
+        file.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
         Photo = request.files['Photo'].filename
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -86,7 +87,8 @@ def register():
         elif not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', Password):
             msg = 'Invalid Password !'
         else:
-            cursor.execute('INSERT INTO studentreg VALUES (% s, % s, % s, % s, % s, % s, % s, % s, % s)', (Rollno, Name, Age, Gender, Email, Mobile, Address, Photo, enc_pwd,))
+            cursor.execute('INSERT INTO studentreg (Name, Age, Gender, Email, Contact, Address, Photo, Password) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+                           (Name, Age, Gender, Email, Mobile, Address, Photo, enc_pwd))
             mysql.connection.commit()
             return redirect(url_for('login'))
     elif request.method == 'POST':
@@ -139,7 +141,8 @@ def dashboard():
 
                 # fetch data from db for upcoming courses
                 Rollno = pwd['Rollno']
-                cursor.execute("SELECT * FROM registered_courses WHERE Rollno = %s", (Rollno,))
+                cursor.execute(
+                    "SELECT * FROM registered_courses WHERE Rollno = %s", (Rollno,))
                 reg = cursor.fetchall()
 
                 return render_template('dashboard.html', msg=msg, results=results, uc=uc, reg=reg)
@@ -156,3 +159,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+>>>>>> > scc_using_flask: app.py
