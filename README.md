@@ -81,9 +81,4 @@ Visit [http://localhost:5000](http://localhost:5000) in your browser.
 ![ss5](./static/ss5.png)
 
 ---
-
-## 🙋‍♂️ Author
-
-Rahul Kumar  
-Aspiring Full-Stack Developer | Python | Flask | Django | React | MySQL  
-[LinkedIn](https://www.linkedin.com/in/rahullkumr) | [GitHub](https://github.com/rahullkumr)
+<h1 align=center>Happy Coding</h1>
